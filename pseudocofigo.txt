@@ -1,0 +1,124 @@
+CALCULADORA - PSEUDOCÓDIGO
+============================================================
+
+MEMÓRIA DA CALCULADORA:
+  objeto = {
+    numOne   → primeiro número digitado
+    operand  → operador (+, -, *, /)
+    numTwo   → segundo número digitado
+    product  → resultado do último cálculo
+  }
+  (essas propriedades existem ou não existem conforme o uso)
+
+============================================================
+QUANDO O USUÁRIO CLICA EM UM NÚMERO (1-9):
+============================================================
+
+  SE já tem resultado E não tem operador → ignora
+
+  SENÃO SE não tem numOne ainda
+    → cria numOne com o dígito clicado
+
+  SENÃO SE tem numOne e não tem operador (e tem menos de 10 dígitos)
+    SE numOne é "0" → substitui pelo dígito
+    SENÃO           → adiciona dígito ao final de numOne
+
+  SENÃO SE tem operador mas não tem numTwo
+    → cria numTwo com o dígito clicado
+
+  SENÃO SE tem numTwo (e tem menos de 10 dígitos)
+    SE numTwo é "0" → substitui pelo dígito
+    SENÃO           → adiciona dígito ao final de numTwo
+
+============================================================
+QUANDO O USUÁRIO CLICA EM "0":
+============================================================
+
+  (igual ao de cima, mas nunca adiciona "0" se o número já for "0")
+
+============================================================
+QUANDO O USUÁRIO CLICA EM UM OPERADOR (+, -, *, /):
+============================================================
+
+  SE não tem nenhum número → ignora
+
+  SENÃO SE tem resultado + operador + numTwo (cálculo em cadeia)
+    → calcula (resultado operador numTwo)
+    → troca o operador pelo novo
+    → apaga numTwo
+
+  SENÃO SE tem numOne + operador + numTwo (cálculo em cadeia)
+    → calcula (numOne operador numTwo)
+    → troca o operador pelo novo
+    → apaga numTwo
+
+  SENÃO SE tem numOne mas não tem operador
+    → registra o operador
+
+  SENÃO SE tem resultado mas não tem operador (veio de um "=")
+    → registra o operador usando o resultado como base
+
+============================================================
+QUANDO O USUÁRIO CLICA EM "=":
+============================================================
+
+  SE não tem numTwo → ignora (cálculo incompleto)
+
+  SENÃO SE não tem resultado anterior
+    → calcula (numOne operador numTwo)
+
+  SENÃO SE tem resultado anterior
+    → calcula (resultado operador numTwo)
+
+============================================================
+QUANDO O USUÁRIO CLICA NO PONTO DECIMAL:
+============================================================
+
+  SE não tem nenhum número
+    → cria numOne como "0."
+
+  SENÃO SE tem numOne e não tem operador
+    SE numOne não tem ponto → adiciona "." ao final de numOne
+
+  SENÃO SE tem operador mas não tem numTwo
+    → cria numTwo como "0."
+
+  SENÃO SE tem numTwo
+    SE numTwo não tem ponto → adiciona "." ao final de numTwo
+
+============================================================
+QUANDO O USUÁRIO CLICA EM "DEL" (apagar):
+============================================================
+
+  SE tem numOne e não tem operador
+    → remove o último caractere de numOne
+
+  SENÃO SE tem numOne + operador mas não tem numTwo
+    → remove o operador
+
+  SENÃO SE tem numTwo
+    → remove o último caractere de numTwo
+
+============================================================
+QUANDO O USUÁRIO CLICA EM "C" (limpar tudo):
+============================================================
+
+  → apaga numOne, operand, numTwo e product
+  → esvazia a tela
+
+============================================================
+CÁLCULO (operação matemática):
+============================================================
+
+  RECEBE: número A, operador, número B
+
+  SE operador é "+"  → resultado = A + B
+  SE operador é "-"  → resultado = A - B
+  SE operador é "*"  → resultado = A × B
+  SE operador é "/" E algum número é zero → exibe "!error"
+  SE operador é "/"  → resultado = A ÷ B
+
+  → formata o resultado (máx. 2 casas decimais, sem zeros à direita)
+  → exibe na tela
+  → salva como "product"
+  → apaga numOne, numTwo e operand
