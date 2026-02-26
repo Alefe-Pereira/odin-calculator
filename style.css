@@ -1,0 +1,101 @@
+body{
+background: rgb(72, 170, 167);
+font: normal 15pt Arial;
+}
+
+header{
+    color: white; 
+    text-align: center;
+}
+
+section{
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    width: 500px;
+    margin: auto;
+    box-shadow: rgba(0, 0, 0, 0.436) 5px 5px 10px;
+}
+
+footer {
+    color: white;
+    text-align: center;
+    font-style: italic;
+} 
+
+#display{
+    background: #222;
+    color: white;
+    height: 70px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+#display-value{
+    font-size: 70px;
+    margin: 0;
+    font-weight: bold;
+    
+}
+
+#buttons{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+}
+
+.btn, .num-btn, .op-btn{
+    height: 80px;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    background: #e0e0e0;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn:hover, .num-btn:hover, .op-btn:hover{
+    background: #cfcfcf;
+}
+
+.btn:active, .num-btn:active, .op-btn:active{
+    transform: scale(0.95);
+}
+
+#btn-add, #btn-subtract, #btn-multiply, #btn-divide{
+    
+    background: #4caf50;
+    color: white;
+}
+
+#btn-add:hover, #btn-subtract:hover, #btn-multiply:hover, #btn-divide:hover{
+    background: #3e8e41;
+}
+
+#btn-equals {
+    background: #2196F3;
+    color: white;
+}
+
+#btn-equals:hover {
+    background: #1976D2;
+}
+
+#btn-clear, #btn-del {
+    
+    background: #f44336;
+    color: white;
+}
+
+#btn-clear:hover, #btn-del:hover {
+    background: #d32f2f;
+}
+
+#btn-0, #btn-equals {
+    grid-column: span 2;
+}
