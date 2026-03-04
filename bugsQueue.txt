@@ -1,37 +1,23 @@
-//modelo para Exercício
+## Relatório de Bugs — Calculadora
 
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modelo de Exercício</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-<header>
+**Problema 1: Números aparecendo infinitamente na tela**
 
-    <h1>Título</h1>
+O código tinha dois sistemas rodando ao mesmo tempo. O sistema antigo usava `displayValue.textContent += button.textContent` 
+direto no event listener de cada botão numérico. O sistema novo usava regras (`addNumberRules`) para 
+controlar o que aparece na tela. Como os dois estavam ativos, cada clique disparava os dois ao mesmo tempo — 
+o antigo escrevia no display, e o novo também tentava escrever. O resultado era os números se acumulando sem parar, 
+como aparecia na primeira imagem.
 
-</header>
+**Problema 2: Nenhum número aparecendo na tela**
 
-<section>
+Depois de remover o sistema antigo, o novo sistema de regras usava uma variável 
+chamada `current` para atualizar o display — mas essa variável nunca foi declarada em nenhum lugar 
+do código. O JavaScript tentava fazer `current.textContent = ...` e falhava silenciosamente, então nenhum 
+número aparecia. A correção foi simples: substituir todas as ocorrências de `current` por `displayValue`, que é o 
+elemento real do HTML.
 
-    <div>
-        testando
-    </div>
+**Resumo**
 
-    <div>
-
-    </div>
-
-</section>
-
-<footer>
-    <p>&copy; CursoemVideo</p>
-</footer>
-
-<script src="script.js"></script>
-
-</body>
-</html>
+Os dois problemas tinham a mesma origem: uma migração incompleta do sistema antigo para o novo. 
+O primeiro bug foi por não remover o código legado. O segundo foi por usar uma variável que pertencia ao 
+código antigo e nunca foi trazida para o novo.
